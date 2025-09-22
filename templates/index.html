@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python Web Terminal</title>
+    <style>
+        body {
+            background: #1e1e1e;
+            color: #eaeaea;
+            font-family: Menlo, Monaco, 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+        }
+        .terminal {
+            background: #232323;
+            margin: 40px auto;
+            max-width: 800px;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px #000a;
+            padding: 0;
+        }
+        .header {
+            background: #2c2c2c;
+            border-radius: 8px 8px 0 0;
+            padding: 0.5em 1em;
+            color: #aaa;
+            font-size: 0.95em;
+            letter-spacing: 1px;
+        }
+        .output-area {
+            background: #181818;
+            color: #eaeaea;
+            min-height: 350px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 1em;
+            font-size: 1em;
+            white-space: pre-wrap;
+        }
+        .prompt-line {
+            color: #50fa7b;
+            font-weight: bold;
+            margin-right: 0.5em;
+        }
+        .input-area {
+            display: flex;
+            align-items: center;
+            background: #232323;
+            padding: 1em;
+            border-radius: 0 0 8px 8px;
+        }
+        input[type=text] {
+            background: #181818;
+            color: #eaeaea;
+            border: none;
+            font-size: 1em;
+            font-family: inherit;
+            width: 100%;
+            outline: none;
+            padding: 0.5em;
+        }
+        input[type=text]:focus {
+            background: #222;
+        }
+        .input-label {
+            color: #50fa7b;
+            font-weight: bold;
+            margin-right: 0.5em;
+        }
+        @media (max-width: 600px) {
+            .terminal { max-width: 98vw; }
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal">
+        <div class="header">MacBook-Pro — Python Web Terminal</div>
+        <div class="output-area" id="output-area">
+            {{ output|safe }}
+        </div>
+        <form method="post" autocomplete="off" class="input-area" onsubmit="setTimeout(()=>{document.getElementById('command').value='';},10)">
+            <span class="input-label">geraldalanraja@MacBook-Pro {{cwd}} $</span>
+            <input type="text" name="command" id="command" autofocus autocomplete="off"/>
+        </form>
+    </div>
+    <script>
+        // Auto-scroll output to bottom
+        window.onload = function() {
+            var out = document.getElementById('output-area');
+            out.scrollTop = out.scrollHeight;
+            document.getElementById('command').focus();
+        };
+    </script>
+</body>
+</html>
